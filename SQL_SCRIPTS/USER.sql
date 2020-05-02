@@ -1,0 +1,16 @@
+CREATE DATABASE springsecurity;
+use springsecurity;
+
+CREATE TABLE `USER` (
+	`ID` INT(11) NOT  NULL,
+	`USERNAME` VARCHAR(128) NOT NULL,
+	`PASSWORD` VARCHAR(128) NOT NULL,
+	`ENABLED` TINYINT(1) NOT NULL,
+	
+	PRIMARY KEY (`USERNAME`)
+	 
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
+
+select * from `USER`;
+
+INSERT INTO `USER` VALUES (1000, 'Isuru', '{noop}12345', 1), (1001, 'Shali', '{noop}12345', 1), (1002, 'Hashan', '{noop}12345', 1);
