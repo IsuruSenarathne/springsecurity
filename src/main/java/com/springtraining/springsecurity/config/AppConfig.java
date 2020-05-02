@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.springtraining.springsecurity")
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:customapp.properties")
 public class AppConfig implements WebMvcConfigurer {
 
     // setup env variable
@@ -64,7 +64,7 @@ public class AppConfig implements WebMvcConfigurer {
         securityDatasource.setInitialPoolSize(Integer.parseInt("connection.pool.initialPoolSize"));
         securityDatasource.setMinPoolSize(Integer.parseInt("connection.pool.minPoolSize"));
         securityDatasource.setMaxPoolSize(Integer.parseInt("connection.pool.maxPoolSize"));
-        securityDatasource.setMaxIdleTime(Integer.parseInt("connection.pool.maxIdleTime"));
+        securityDatasource.setMaxIdleTime(Integer.parseInt("connection.pool.maxIdealTime"));
 
         return  securityDatasource;
     }

@@ -29,8 +29,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser(users.username("shali").password("123").roles("EMP", "ADM"));
 
         // JDBC authentication
-        // hell
-        auth.jdbcAuthentication().dataSource(dataSource);
+        auth.jdbcAuthentication().dataSource(this.dataSource);
 
     }
 

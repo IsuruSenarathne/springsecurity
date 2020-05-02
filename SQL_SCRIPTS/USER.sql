@@ -1,16 +1,43 @@
 CREATE DATABASE springsecurity;
 use springsecurity;
 
-CREATE TABLE `USER` (
-	`ID` INT(11) NOT  NULL,
+CREATE TABLE `USERS` (
 	`USERNAME` VARCHAR(128) NOT NULL,
 	`PASSWORD` VARCHAR(128) NOT NULL,
 	`ENABLED` TINYINT(1) NOT NULL,
 	
 	PRIMARY KEY (`USERNAME`)
 	 
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-select * from `USER`;
+select * from `USERS`;
 
-INSERT INTO `USER` VALUES (1000, 'Isuru', '{noop}12345', 1), (1001, 'Shali', '{noop}12345', 1), (1002, 'Hashan', '{noop}12345', 1);
+INSERT INTO `USERS` VALUES 
+('Isuru', '{noop}111', 1),  -- noop -> no operation on password, bcrypt/hashing etc. 
+('Shali', '{noop}111', 1), 
+('Hashan', '{noop}111', 1);
+
+
+CREATE TABLE `AUTHORITIES` (
+	`USERNAME` VARCHAR(128) NOT NULL,
+	`AUTHORITY` VARCHAR(128) NOT NULL,
+    
+	UNIQUE KEY `AUTHORITIES_IDX_1` (`USERNAME`, `AUTHORITY`),
+    CONSTRAINT `AUTHORITIES_IBFK_1` 
+    FOREIGN KEY (`USERNAME`) 
+    REFERENCES `USERS` (`USERNAME`)
+	 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE `USER`;
+DROP TABLE `USERS`;
+DROP TABLE `AUTHORITIES`;
+
+INSERT INTO `AUTHORITIES` VALUES 
+('Isuru', 'ROLE_EMP'),
+('Shali', 'ROLE_ADM'),
+('Shali', 'ROLE_EMP'),
+('Hashan', 'ROLE_MNG'),
+('Hashan', 'ROLE_EMP');
+
+select * from `AUTHORITIES`;
